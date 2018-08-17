@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>mgn-accordion.js</title>
+    <meta name="description" content="Implement accordion function.">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<style>
+		body { background: #FFF; margin: 0px; overflow: hidden; overflow: auto;}
+		a { color: #EC4500; text-decoration: underline; cursor: pointer; }
+		img { max-width: 100%; height: auto; }
+		main { padding: 40px 20px; }
+		main a { font-weight: bold; }
+		main section { margin-top: 60px; }
+		main section > section { margin-top: 40px; }
+		main h1, h2, h3 { margin: 0; padding: 0; }
+		main h2 { font-size: 1.75em; margin-bottom: 20px; border-bottom: 4px solid #333; }
+		main h3 { margin-bottom: 20px; font-size: 1em; background: #333; color: #FFF; padding: 10px; }
+		main h3:before { content: ":: ";  }
+		main pre { min-width: 400px; position: relative; display: inline-block; margin: 5px 0; background: #F9F9F9; border: 1px solid #DDD; padding: 10px 20px 20px; line-height: ; }
+		main pre[data-type]:before { content: attr(data-type); display: inline-block; position: absolute; top: 0; left: 0; line-height: 1; padding: 2px 5px; background: #999; color: #FFF; font-size: 0.8em; letter-spacing: 0.05em; }
+		main pre mark { background: rgba(236,69,0,0.2); font-weight: bold; display: inline-block; padding: 0 3px; }
+		footer { padding: 20px; background: #F7F7F7; }
+		footer p { font-size: 0.75em; }
+
+		.j-accordion_btn,dl dt {
+			margin-bottom: 20px;
+			cursor: pointer;
+			color: #FFF;
+			background: rgba(236,69,0,1);
+			display: inline-block;
+			border-radius: 100px;
+			padding: 10px 20px;
+		}
+		.j-accordion_btn.ds-active,dl dt.ds-active {
+			opacity: 0.2;
+		}
+		dl,dl dd { margin: 0; }
+		.inner {
+			border: 1px solid #DDD;
+			padding: 20px;
+		}
+
+	</style>
+
+</head>
+<body>
+
+	<main>
+
+		<h1>mgn-accordion</h1>
+		<p>Implement accordion function.</p>
+		<p><a href="https://github.com/frontend-isobar-jp/mgn-accordion">https://github.com/frontend-isobar-jp/mgn-accordion</a></p>
+
+		<section>
+			<h2>Default</h2>
+<div><pre data-type="javascript"><code>
+let mgnAccordion = <mark>new mgnAccordion(".j-accordion")</mark>;
+</code></pre></div>
+<div><pre data-type="HTML"><code>
+&lt;div class="<mark>accordion</mark>"&gt;
+	&lt;button class="<mark>accordion_btn</mark>"&gt;Button&lt;/button&gt;
+	&lt;div class="<mark>accordion_detail</mark>"&gt;
+		&lt;div class="inner"&gt;text text&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</code></pre></div>
+
+			<div class="j-accordion">
+			    <button class="j-accordion_btn">Button</button>
+			    <div class="j-accordion_detail">
+					<div class="inner">
+						text text text text text text text text <br>
+						text text text text text text text text
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h2>Option</h2>
+<div><pre data-type="javascript"><code>
+let mgnAccordion2 = new mgnAccordion(
+	".j-accordion2",
+	<mark>{</mark>
+	<mark>	toggleSpeed: 200,</mark>
+	<mark>	btnElm: "dt",</mark>
+	<mark>	detailElm: "dd"</mark>
+	<mark>}</mark>
+);
+</code></pre></div>
+
+			<section>
+				<h3>Opened</h3>
+				<dl class="j-accordion2">
+					<dt class="ds-active">Button</dt>
+					<dd class="ds-active">
+						<div class="inner">
+							text text text text text text text text <br>text text text text text text text text
+						</div>
+					</dd>
+				</dl>
+<div><pre data-type="HTML"><code>
+&lt;dl class="j-accordion2"&gt;
+	&lt;dt class="<mark>ds-active</mark>"&gt;Opened&lt;/dt&gt;
+	&lt;dd class="<mark>ds-active</mark>"&gt;
+		&lt;div class="inner"&gt;text text&lt;/div&gt;
+	&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre></div>
+			</section>
+
+			<section>
+				<h3>Open( element );</h3>
+				<dl class="j-accordion2">
+					<dt class="open">Button</dt>
+					<dd>
+						<div class="inner">
+							text text text text text text text text <br>text text text text text text text text
+						</div>
+					</dd>
+				</dl>
+<div><pre data-type="javascript"><code>
+mgnAccordion2.Open( <mark>".open"</mark> );
+</code></pre></div>
+<div><pre data-type="HTML"><code>
+&lt;dl class="j-accordion2"&gt;
+	&lt;dt class="<mark>open</mark>"&gt;Opened&lt;/dt&gt;
+	&lt;dd&gt;
+		&lt;div class="inner"&gt;text text&lt;/div&gt;
+	&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre></div>
+			</section>
+
+			<section>
+				<h3>Close( element );</h3>
+				<dl class="j-accordion2">
+					<dt class="ds-active close">Button</dt>
+					<dd class="ds-active">
+						<div class="inner">
+							text text text text text text text text <br>text text text text text text text text
+						</div>
+					</dd>
+				</dl>
+<div><pre data-type="javascript"><code>
+mgnAccordion2.Close( <mark>".close"</mark> );
+</code></pre></div>
+<div><pre data-type="HTML"><code>
+&lt;dl class="j-accordion2"&gt;
+	&lt;dt class="ds-active <mark>close</mark>"&gt;Opened&lt;/dt&gt;
+	&lt;dd&gt;
+		&lt;div class="inner"&gt;text text&lt;/div&gt;
+	&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre></div>
+			</section>
+
+		</section>
+
+	</main>
+
+	<footer>
+		<p><a href="https://megane-template.com/" target="_blank">Megane Template</a></p>
+		<p>Copyrights Dentsu Isobar. Allrights reserved.</p>
+	</footer>
+
+	<script src="./bundle.js"></script>
+
+</body>
+</html>
