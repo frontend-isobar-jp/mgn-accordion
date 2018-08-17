@@ -27,7 +27,6 @@ License: Dentsu Isobar All Rights Reserved.
         this.toggleSpeed = option.toggleSpeed ? option.toggleSpeed : 1;
         this.btnElm = option.btnElm ? option.btnElm : this.selector + "_btn";
         this.detailElm = option.detailElm ? option.detailElm : this.selector + "_detail";
-
         this.OpenEnd = function(){};
         this.CloseEnd = function(){};
 
@@ -65,11 +64,14 @@ License: Dentsu Isobar All Rights Reserved.
             var DETAIL = this.accordion[i].querySelectorAll(this.detailElm);
             var BTN = this.accordion[i].querySelectorAll(this.btnElm);
 
+            if( DETAIL.length == 0 ) console.error(this.detailElm + " is not found");
+            if( BTN.length == 0 ) console.error(this.btnElm + " is not found");
+
             for (var j = 0; j < BTN.length; j++) {
 
                 if( DETAIL[j] ) {
                     DETAIL[j].style.cssText = initCss;
-                    if( !this.HasClass( DETAIL[j], "ds-active" ) ) {
+                    if( !this.HasClass( DETAIL[j], "active" ) ) {
                         DETAIL[j].style.maxHeight = "0px";
                     }
                 }
@@ -103,7 +105,7 @@ License: Dentsu Isobar All Rights Reserved.
 
         var TARGET = element.currentTarget ? element.currentTarget : document.querySelectorAll( element )[0];
 
-        if( this.HasClass( TARGET, "ds-active" ) ){
+        if( this.HasClass( TARGET, "active" ) ){
 
             if( !this.clickFlag ) this.Close( element );
 
@@ -150,8 +152,8 @@ License: Dentsu Isobar All Rights Reserved.
             TARGET_DETAIL.removeEventListener("transitionend", EndFunc);
         };
 
-        this.AddClass(TARGET,"ds-active");
-        this.AddClass(TARGET_DETAIL,"ds-active");
+        this.AddClass(TARGET,"active");
+        this.AddClass(TARGET_DETAIL,"active");
 
         if( !this.accordion[0].classList ) {
             this.clickFlag = false;
@@ -188,8 +190,8 @@ License: Dentsu Isobar All Rights Reserved.
 
         //
 
-        this.RemoveClass(TARGET,"ds-active");
-        this.RemoveClass(TARGET_DETAIL,"ds-active");
+        this.RemoveClass(TARGET,"active");
+        this.RemoveClass(TARGET_DETAIL,"active");
 
         TARGET_DETAIL.style.maxHeight = TARGET_DETAIL.scrollHeight + "px";
         setTimeout( function() {
@@ -228,7 +230,7 @@ License: Dentsu Isobar All Rights Reserved.
         for (var i = 0; i < TARGET_BTN.length; i++) {
 
             if( i != INDEX ) {
-                TARGET_BTN[i].classList.remove("ds-active");
+                TARGET_BTN[i].classList.remove("active");
                 Close_( i );
             }
 
@@ -238,7 +240,7 @@ License: Dentsu Isobar All Rights Reserved.
 
         function Close_( i ) {
 
-            TARGET_DETAIL[i].classList.remove("ds-active");
+            TARGET_DETAIL[i].classList.remove("active");
 
             setTimeout( function() { TARGET_DETAIL[i].style.maxHeight = "0px"; }, 100);
 
