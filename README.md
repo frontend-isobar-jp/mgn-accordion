@@ -40,8 +40,8 @@ new mgnAccordion(element [, option]);
 |Option|Data type|Default|Descroption|
 |:-------|:--------|:------|:----------|
 |toggleSpeed|Number|0|Adjust opening and closing speed.|
-|btnElm|String|".j-accordion_btn"<br>(if “.j-accordion”)|Specify element to be button.|
-|detailElm|String|".j-accordion_detail"<br>(if “.j-accordion”)|Specify element to be content.|
+|btnElm|String|".j-accordion_btn"<br>(In case of “.j-accordion”)|Specify element to be button.|
+|detailElm|String|".j-accordion_detail"<br>(In case of “.j-accordion”)|Specify element to be content.|
 
 ___
 
