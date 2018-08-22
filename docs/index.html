@@ -33,7 +33,7 @@
 			border-radius: 100px;
 			padding: 10px 20px;
 		}
-		.j-accordion_btn.ds-active,dl dt.ds-active {
+		.j-accordion_btn.active,dl dt.active {
 			opacity: 0.2;
 		}
 		dl,dl dd { margin: 0; }
@@ -94,8 +94,8 @@ let mgnAccordion2 = new mgnAccordion(
 			<section>
 				<h3>Opened</h3>
 				<dl class="j-accordion2">
-					<dt class="ds-active">Button</dt>
-					<dd class="ds-active">
+					<dt class="active">Button</dt>
+					<dd class="active">
 						<div class="inner">
 							text text text text text text text text <br>text text text text text text text text
 						</div>
@@ -103,8 +103,8 @@ let mgnAccordion2 = new mgnAccordion(
 				</dl>
 <div><pre data-type="HTML"><code>
 &lt;dl class="j-accordion2"&gt;
-	&lt;dt class="<mark>ds-active</mark>"&gt;Opened&lt;/dt&gt;
-	&lt;dd class="<mark>ds-active</mark>"&gt;
+	&lt;dt class="<mark>active</mark>"&gt;Opened&lt;/dt&gt;
+	&lt;dd class="<mark>active</mark>"&gt;
 		&lt;div class="inner"&gt;text text&lt;/div&gt;
 	&lt;/dd&gt;
 &lt;/dl&gt;
@@ -137,8 +137,8 @@ mgnAccordion2.Open( <mark>".open"</mark> );
 			<section>
 				<h3>Close( element );</h3>
 				<dl class="j-accordion2">
-					<dt class="ds-active close">Button</dt>
-					<dd class="ds-active">
+					<dt class="active close">Button</dt>
+					<dd class="active">
 						<div class="inner">
 							text text text text text text text text <br>text text text text text text text text
 						</div>
@@ -149,7 +149,7 @@ mgnAccordion2.Close( <mark>".close"</mark> );
 </code></pre></div>
 <div><pre data-type="HTML"><code>
 &lt;dl class="j-accordion2"&gt;
-	&lt;dt class="ds-active <mark>close</mark>"&gt;Opened&lt;/dt&gt;
+	&lt;dt class="active <mark>close</mark>"&gt;Opened&lt;/dt&gt;
 	&lt;dd&gt;
 		&lt;div class="inner"&gt;text text&lt;/div&gt;
 	&lt;/dd&gt;
