@@ -15,7 +15,7 @@
     "ECMA script",
     "not jQuery"
   ],
-  "author": "Daiki Saito (https://github.com/dsflon)",
+  "author": "Dentsu Isobar (https://github.com/frontend-isobar-jp)",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.0",
