@@ -134,7 +134,7 @@ License: Dentsu Isobar All Rights Reserved.
 
         this.clickFlag = true;
 
-        var TARGET = element.currentTarget ? element.currentTarget : document.querySelectorAll( element )[0];
+        var TARGET = element.currentTarget ? element.currentTarget : element;
         var PARENT = this.GetParent( TARGET, this.selector );
 
         var INDEX = Array.prototype.indexOf.call( PARENT.querySelectorAll( this.btnElm ), TARGET );
@@ -165,6 +165,8 @@ License: Dentsu Isobar All Rights Reserved.
 
     mgnAccordion.prototype.Close = function( element ) {
 
+        console.log( element );
+
         var this_ = this;
 
         if(!this.accordion[0]) {
@@ -174,7 +176,7 @@ License: Dentsu Isobar All Rights Reserved.
 
         this.clickFlag = true;
 
-        var TARGET = element.currentTarget ? element.currentTarget : document.querySelectorAll( element )[0];
+        var TARGET = element.currentTarget ? element.currentTarget : element;
         var PARENT = this.GetParent( TARGET, this.selector );
 
         var INDEX = Array.prototype.indexOf.call( PARENT.querySelectorAll( this.btnElm ), TARGET );
