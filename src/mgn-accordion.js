@@ -42,6 +42,7 @@ License: Dentsu Isobar All Rights Reserved.
         target.style.transition = "max-height " + this.toggleSpeed/1000 +"s";
         target.style.setProperty('-webkit-transition', "max-height " + this.toggleSpeed/1000 +"s");
     }
+
     mgnAccordion.prototype.RemoveTransition = function(target) {
         target.style.transition = "none";
         target.style.setProperty('-webkit-transition', "none");
@@ -52,6 +53,7 @@ License: Dentsu Isobar All Rights Reserved.
     ** Init
     **
     **/
+    
     mgnAccordion.prototype.Init = function() {
         var this_ = this;
 
@@ -76,6 +78,23 @@ License: Dentsu Isobar All Rights Reserved.
                     }
                 }
 
+                (function (n) {
+                    DETAIL[n].addEventListener("transitionend", function () {
+                       
+                        if (DETAIL[n].classList.contains("active")) {
+                            this_.OpenEnd(n);
+                            DETAIL[n].style.maxHeight = null;
+                            // TARGET.style.pointerEvents = "inherit";
+                        }
+
+                        else {
+                            this_.CloseEnd(n);
+                        }
+                        // console.log("TRANSITION END!!!");
+                    }, false);
+                })(j);
+                
+
                 BTN[j].addEventListener( "click", function(e) {
 
                     e.preventDefault();
@@ -83,11 +102,8 @@ License: Dentsu Isobar All Rights Reserved.
                     this_.Toggle( e );
 
                 });
-
             }
-
         }
-
     }
 
 
@@ -103,7 +119,7 @@ License: Dentsu Isobar All Rights Reserved.
             return false;
         }
 
-        var TARGET = element.currentTarget ? element.currentTarget : document.querySelectorAll( element )[0];
+        var TARGET = element.currentTarget ? element.currentTarget : document.querySelectorAll(element)[0];
 
         if( this.HasClass( TARGET, "active" ) ){
 
@@ -123,6 +139,10 @@ License: Dentsu Isobar All Rights Reserved.
     ** Open, Close
     **
     **/
+    
+
+
+
     mgnAccordion.prototype.Open = function(element) {
 
         var this_ = this;
@@ -137,31 +157,33 @@ License: Dentsu Isobar All Rights Reserved.
         var TARGET = element.currentTarget ? element.currentTarget : element;
         var PARENT = this.GetParent( TARGET, this.selector );
 
-        var INDEX = Array.prototype.indexOf.call( PARENT.querySelectorAll( this.btnElm ), TARGET );
-
+        var INDEX = Array.prototype.indexOf.call(PARENT.querySelectorAll(this.btnElm), TARGET);
+        
+        
         var TARGET_DETAIL = PARENT.querySelectorAll( this.detailElm )[ INDEX ];
 
         // TARGET_DETAIL.style.display = "block";
         TARGET_DETAIL.style.maxHeight = TARGET_DETAIL.scrollHeight + "px";
 
-        var EndFunc = function() {
-            this_.clickFlag = false;
-            this_.OpenEnd( INDEX );
-            this_.RemoveTransition(TARGET_DETAIL);
-            TARGET_DETAIL.style.maxHeight = null;
-            TARGET_DETAIL.removeEventListener("transitionend", EndFunc);
-        };
+        // var EndFunc = function() {
+        //     this_.clickFlag = false;
+        //     this_.OpenEnd( INDEX );
+        //     // this_.RemoveTransition(TARGET_DETAIL);
+        //     TARGET_DETAIL.style.maxHeight = null;
+        //     TARGET_DETAIL.removeEventListener("transitionend", EndFunc);
+        // };
 
         this.AddClass(TARGET,"active");
         this.AddClass(TARGET_DETAIL,"active");
 
-        if( !this.accordion[0].classList ) {
-            this.clickFlag = false;
-        } else {
-            TARGET_DETAIL.addEventListener("transitionend", EndFunc, false);
-        }
-
+        // if( !this.accordion[0].classList ) {
+        //     this.clickFlag = false;
+        // } else {
+        //     TARGET_DETAIL.addEventListener("transitionend", EndFunc, false);
+        // }
+        this.clickFlag = false;
     }
+
 
     mgnAccordion.prototype.Close = function( element ) {
 
@@ -181,14 +203,15 @@ License: Dentsu Isobar All Rights Reserved.
 
         var INDEX = Array.prototype.indexOf.call( PARENT.querySelectorAll( this.btnElm ), TARGET );
 
-        var TARGET_DETAIL = PARENT.querySelectorAll( this.detailElm )[ INDEX ];
-        var EndFunc = function() {
-            this_.clickFlag = false;
-            this_.CloseEnd( INDEX );
-            TARGET.style.pointerEvents = "inherit";
-            // TARGET_DETAIL.style.display = "none";
-            TARGET_DETAIL.removeEventListener("transitionend", EndFunc);
-        };
+        var TARGET_DETAIL = PARENT.querySelectorAll(this.detailElm)[INDEX];
+        
+        // var EndFunc = function () {
+        //     this_.clickFlag = false;
+        //     this_.CloseEnd(INDEX);
+        //     TARGET.style.pointerEvents = "inherit";
+        //     // TARGET_DETAIL.style.display = "none";
+        //     TARGET_DETAIL.removeEventListener("transitionend", EndFunc);
+        // };
 
         //
 
@@ -201,17 +224,17 @@ License: Dentsu Isobar All Rights Reserved.
             TARGET_DETAIL.style.maxHeight = "0px";
         }, 10);
 
-        if( !this.accordion[0].classList ) { //IE9
+        // if( !this.accordion[0].classList ) { //IE9
 
-            // TARGET_DETAIL.style.display = "none";
-            this.clickFlag = false;
+        //     // TARGET_DETAIL.style.display = "none";
+        //     this.clickFlag = false;
 
-        } else {
+        // } else {
 
-            TARGET_DETAIL.addEventListener("transitionend", EndFunc, false);
+        //     TARGET_DETAIL.addEventListener("transitionend", EndFunc, false);
 
-        }
-
+        // }
+        this.clickFlag = false;
     }
 
     mgnAccordion.prototype.CloseIgnoreThis = function( element ) {
