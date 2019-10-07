@@ -53,7 +53,7 @@ License: Dentsu Isobar All Rights Reserved.
     ** Init
     **
     **/
-    
+
     mgnAccordion.prototype.Init = function() {
         var this_ = this;
 
@@ -80,10 +80,10 @@ License: Dentsu Isobar All Rights Reserved.
 
                 (function (n) {
                     DETAIL[n].addEventListener("transitionend", function () {
-                       
-                        if (DETAIL[n].classList.contains("active")) {
+
+                        if (this.classList.contains("active")) {
                             this_.OpenEnd(n);
-                            DETAIL[n].style.maxHeight = null;
+                            this.style.maxHeight = null;
                             // TARGET.style.pointerEvents = "inherit";
                         }
 
@@ -93,7 +93,7 @@ License: Dentsu Isobar All Rights Reserved.
                         // console.log("TRANSITION END!!!");
                     }, false);
                 })(j);
-                
+
 
                 BTN[j].addEventListener( "click", function(e) {
 
@@ -139,7 +139,7 @@ License: Dentsu Isobar All Rights Reserved.
     ** Open, Close
     **
     **/
-    
+
 
 
 
@@ -158,8 +158,8 @@ License: Dentsu Isobar All Rights Reserved.
         var PARENT = this.GetParent( TARGET, this.selector );
 
         var INDEX = Array.prototype.indexOf.call(PARENT.querySelectorAll(this.btnElm), TARGET);
-        
-        
+
+
         var TARGET_DETAIL = PARENT.querySelectorAll( this.detailElm )[ INDEX ];
 
         // TARGET_DETAIL.style.display = "block";
@@ -204,7 +204,7 @@ License: Dentsu Isobar All Rights Reserved.
         var INDEX = Array.prototype.indexOf.call( PARENT.querySelectorAll( this.btnElm ), TARGET );
 
         var TARGET_DETAIL = PARENT.querySelectorAll(this.detailElm)[INDEX];
-        
+
         // var EndFunc = function () {
         //     this_.clickFlag = false;
         //     this_.CloseEnd(INDEX);
