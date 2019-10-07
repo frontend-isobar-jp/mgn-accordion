@@ -187,7 +187,7 @@ License: Dentsu Isobar All Rights Reserved.
 
     mgnAccordion.prototype.Close = function( element ) {
 
-        console.log( element );
+        // console.log( element );
 
         var this_ = this;
 
