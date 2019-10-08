@@ -1,6 +1,6 @@
 {
   "name": "mgn-accordion",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "main": "./src/mgn-accordion.js",
   "scripts": {

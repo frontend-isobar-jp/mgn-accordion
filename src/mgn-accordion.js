@@ -82,13 +82,13 @@ License: Dentsu Isobar All Rights Reserved.
                     DETAIL[n].addEventListener("transitionend", function () {
 
                         if (this.classList.contains("active")) {
-                            this_.OpenEnd(n);
+                            this_.OpenEnd(n,this);
                             this.style.maxHeight = null;
                             // TARGET.style.pointerEvents = "inherit";
                         }
 
                         else {
-                            this_.CloseEnd(n);
+                            this_.CloseEnd(n,this);
                         }
                         // console.log("TRANSITION END!!!");
                     }, false);
